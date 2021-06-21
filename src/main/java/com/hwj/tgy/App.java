@@ -1,18 +1,19 @@
 package com.hwj.tgy;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RestController;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Hello world!
  *
  */
-@RestController
-@EnableAutoConfiguration
+@SpringBootApplication
+@MapperScan("com.hwj.tgy.dao")
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        SpringApplication.run(App.class, args);
     }
 }
