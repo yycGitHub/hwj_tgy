@@ -4,6 +4,7 @@ import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.mapper.common.MysqlBaseMapper;
 import org.springframework.stereotype.Repository;
 
+@Repository
 public interface PoiInfoMainMapper extends MysqlBaseMapper<PoiInfoMain> {
     int deleteByPrimaryKey(String id);
 
