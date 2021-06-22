@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.PoiInfoMainMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.PoiInfoMain">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="POI_NAME" jdbcType="VARCHAR" property="poiName" />
+    <result column="POI_TYPE" jdbcType="INTEGER" property="poiType" />
+    <result column="POI_INTRODUCE" jdbcType="VARCHAR" property="poiIntroduce" />
+    <result column="POI_LON" jdbcType="VARCHAR" property="poiLon" />
+    <result column="POI_LAT" jdbcType="VARCHAR" property="poiLat" />
+    <result column="POI_ROAM" jdbcType="VARCHAR" property="poiRoam" />
+    <result column="POI_PANORAMA" jdbcType="VARCHAR" property="poiPanorama" />
+    <result column="POI_ICON" jdbcType="VARCHAR" property="poiIcon" />
+    <result column="POI_PHONE" jdbcType="VARCHAR" property="poiPhone" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, POI_NAME, POI_TYPE, POI_INTRODUCE, POI_LON, POI_LAT, POI_ROAM, POI_PANORAMA, 
+    POI_ICON, POI_PHONE, STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from poi_info_main
+    where ID = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from poi_info_main
+    where ID = #{id}
+  </delete>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.PoiInfoMain">
+    insert into poi_info_main (ID, POI_NAME, POI_TYPE, 
+      POI_INTRODUCE, POI_LON, POI_LAT, 
+      POI_ROAM, POI_PANORAMA, POI_ICON, 
+      POI_PHONE, STATE, HANDLE_TIME
+      )
+    values (#{id}, #{poiName}, #{poiType},
+      #{poiIntroduce}, #{poiLon}, #{poiLat},
+      #{poiRoam}, #{poiPanorama}, #{poiIcon},
+      #{poiPhone}, #{state}, #{handleTime}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.PoiInfoMain">
+    insert into poi_info_main
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="poiName != null">
+        POI_NAME,
+      </if>
+      <if test="poiType != null">
+        POI_TYPE,
+      </if>
+      <if test="poiIntroduce != null">
+        POI_INTRODUCE,
+      </if>
+      <if test="poiLon != null">
+        POI_LON,
+      </if>
+      <if test="poiLat != null">
+        POI_LAT,
+      </if>
+      <if test="poiRoam != null">
+        POI_ROAM,
+      </if>
+      <if test="poiPanorama != null">
+        POI_PANORAMA,
+      </if>
+      <if test="poiIcon != null">
+        POI_ICON,
+      </if>
+      <if test="poiPhone != null">
+        POI_PHONE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id},
+      </if>
+      <if test="poiName != null">
+        #{poiName},
+      </if>
+      <if test="poiType != null">
+        #{poiType},
+      </if>
+      <if test="poiIntroduce != null">
+        #{poiIntroduce},
+      </if>
+      <if test="poiLon != null">
+        #{poiLon},
+      </if>
+      <if test="poiLat != null">
+        #{poiLat},
+      </if>
+      <if test="poiRoam != null">
+        #{poiRoam},
+      </if>
+      <if test="poiPanorama != null">
+        #{poiPanorama},
+      </if>
+      <if test="poiIcon != null">
+        #{poiIcon},
+      </if>
+      <if test="poiPhone != null">
+        #{poiPhone},
+      </if>
+      <if test="state != null">
+        #{state},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.PoiInfoMain">
+    update poi_info_main
+    <set>
+      <if test="poiName != null">
+        POI_NAME = #{poiName},
+      </if>
+      <if test="poiType != null">
+        POI_TYPE = #{poiType},
+      </if>
+      <if test="poiIntroduce != null">
+        POI_INTRODUCE = #{poiIntroduce},
+      </if>
+      <if test="poiLon != null">
+        POI_LON = #{poiLon},
+      </if>
+      <if test="poiLat != null">
+        POI_LAT = #{poiLat},
+      </if>
+      <if test="poiRoam != null">
+        POI_ROAM = #{poiRoam},
+      </if>
+      <if test="poiPanorama != null">
+        POI_PANORAMA = #{poiPanorama},
+      </if>
+      <if test="poiIcon != null">
+        POI_ICON = #{poiIcon},
+      </if>
+      <if test="poiPhone != null">
+        POI_PHONE = #{poiPhone},
+      </if>
+      <if test="state != null">
+        STATE = #{state},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime},
+      </if>
+    </set>
+    where ID = #{id}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.PoiInfoMain">
+    update poi_info_main
+    set POI_NAME = #{poiName},
+      POI_TYPE = #{poiType},
+      POI_INTRODUCE = #{poiIntroduce},
+      POI_LON = #{poiLon},
+      POI_LAT = #{poiLat},
+      POI_ROAM = #{poiRoam},
+      POI_PANORAMA = #{poiPanorama},
+      POI_ICON = #{poiIcon},
+      POI_PHONE = #{poiPhone},
+      STATE = #{state},
+      HANDLE_TIME = #{handleTime}
+    where ID = #{id}
+  </update>
+</mapper>

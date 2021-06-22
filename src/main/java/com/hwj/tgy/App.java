@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Hello world!
  *
  */
+@MapperScan("com.hwj.tgy.mapper")
 @SpringBootApplication
-@MapperScan("com.hwj.tgy.dao")
 public class App 
 {
     public static void main( String[] args )
