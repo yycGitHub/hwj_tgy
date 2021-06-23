@@ -4,19 +4,19 @@ import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.entity.common.ResultMessage;
 import com.hwj.tgy.service.PoiInfoMainService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/poiinfomain")
+@RestController
 public class PoiInfoMainController {
+
     @Autowired
     private PoiInfoMainService poiInfoMainService;
 
-    @PostMapping("/insertSelective")
-    public ResultMessage insertSelective(@RequestBody PoiInfoMain poiInfoMain) {
+    @RequestMapping("/insertSelective")
+    public ResultMessage insertSelective( PoiInfoMain poiInfoMain) {
+        System.out.println("aaaaaaaaaaaaaaaaaaaa");
         return poiInfoMainService.insertSelective(poiInfoMain);
     }
 
