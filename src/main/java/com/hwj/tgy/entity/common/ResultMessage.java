@@ -12,5 +12,10 @@ public class ResultMessage {
     private String message;
     private String result;
 
-
+   public static ResultMessage getResultMessageSuucess(){
+        ResultMessage rm = new ResultMessage();
+        rm.setCode("200");
+        rm.setMessage("success");
+        return rm;
+    }
 }

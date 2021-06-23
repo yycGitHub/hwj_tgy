@@ -1,20 +1,20 @@
-package com.hwj.tgy.service.impl;
+package com.hwj.tgy.service.wx.impl;
 
 import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.entity.common.ResultMessage;
-import com.hwj.tgy.mapper.PoiInfoMainMapper;
-import com.hwj.tgy.service.PoiInfoMainService;
+import com.hwj.tgy.mapper.wx.WxPoiInfoMainMapper;
+import com.hwj.tgy.service.wx.WxPoiInfoMainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PoiInfoMainServiceImpl implements PoiInfoMainService {
+public class WxPoiInfoMainServiceImpl implements WxPoiInfoMainService {
     @Autowired
-    private PoiInfoMainMapper poiInfoMainMapper;
+    private WxPoiInfoMainMapper wxPoiInfoMainMapper;
 
     @Override
     public ResultMessage insertSelective(PoiInfoMain poiInfoMain) {
-        poiInfoMainMapper.insertSelective(poiInfoMain);
+        wxPoiInfoMainMapper.insertSelective(poiInfoMain);
         ResultMessage resultMessage = new ResultMessage();
 
         resultMessage.setCode("200");

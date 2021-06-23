@@ -1,11 +1,11 @@
-package com.hwj.tgy.mapper;
+package com.hwj.tgy.mapper.wx;
 
 import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.mapper.common.MysqlBaseMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PoiInfoMainMapper extends MysqlBaseMapper<PoiInfoMain> {
+public interface WxPoiInfoMainMapper extends MysqlBaseMapper<PoiInfoMain> {
     int deleteByPrimaryKey(String id);
 
     int insert(PoiInfoMain poiInfoMain);
