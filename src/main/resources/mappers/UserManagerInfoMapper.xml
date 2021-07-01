@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.UserManagerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.UserManagerInfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <id column="LOGIN_ACCOUNT" jdbcType="VARCHAR" property="loginAccount" />
+    <id column="LOGIN_PASSWORD" jdbcType="VARCHAR" property="loginPassword" />
+    <id column="LOGIN_NAME" jdbcType="VARCHAR" property="loginName" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LOGIN_ACCOUNT, LOGIN_PASSWORD, LOGIN_NAME, STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimary" parameterType="com.hwj.tgy.entity.UserManagerInfoKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_manager_info
+    where ID = #{id,jdbcType=INTEGER}
+      and LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+      and LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR}
+      and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.UserManagerInfo">
+    insert into user_manager_info (ID, LOGIN_ACCOUNT, LOGIN_PASSWORD, 
+      LOGIN_NAME, STATE, HANDLE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{loginName,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.UserManagerInfo">
+    insert into user_manager_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loginAccount != null">
+        LOGIN_ACCOUNT,
+      </if>
+      <if test="loginPassword != null">
+        LOGIN_PASSWORD,
+      </if>
+      <if test="loginName != null">
+        LOGIN_NAME,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginAccount != null">
+        #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.UserManagerInfo">
+    update user_manager_info
+    <set>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+      and LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+      and LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR}
+      and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.UserManagerInfo">
+    update user_manager_info
+    set STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
+      and LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+      and LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR}
+      and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+  </update>
+</mapper>

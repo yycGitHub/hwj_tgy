@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.UserVisitorInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.UserVisitorInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUS_NAME" jdbcType="VARCHAR" property="cusName" />
+    <result column="CUS_SEX" jdbcType="VARCHAR" property="cusSex" />
+    <result column="CUS_NATION" jdbcType="VARCHAR" property="cusNation" />
+    <result column="CUS_BIRTH" jdbcType="DATE" property="cusBirth" />
+    <result column="CUS_ADDRESS" jdbcType="VARCHAR" property="cusAddress" />
+    <result column="CUS_IDENTITY" jdbcType="VARCHAR" property="cusIdentity" />
+    <result column="CUS_VAILDDATE" jdbcType="DATE" property="cusVailddate" />
+    <result column="CUS_INVAILDDATE" jdbcType="DATE" property="cusInvailddate" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUS_NAME, CUS_SEX, CUS_NATION, CUS_BIRTH, CUS_ADDRESS, CUS_IDENTITY, CUS_VAILDDATE, 
+    CUS_INVAILDDATE, STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimary" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_visitor_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.UserVisitorInfo">
+    insert into user_visitor_info (ID, CUS_NAME, CUS_SEX, 
+      CUS_NATION, CUS_BIRTH, CUS_ADDRESS, 
+      CUS_IDENTITY, CUS_VAILDDATE, CUS_INVAILDDATE, 
+      STATE, HANDLE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{cusName,jdbcType=VARCHAR}, #{cusSex,jdbcType=VARCHAR}, 
+      #{cusNation,jdbcType=VARCHAR}, #{cusBirth,jdbcType=DATE}, #{cusAddress,jdbcType=VARCHAR}, 
+      #{cusIdentity,jdbcType=VARCHAR}, #{cusVailddate,jdbcType=DATE}, #{cusInvailddate,jdbcType=DATE}, 
+      #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.UserVisitorInfo">
+    insert into user_visitor_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="cusName != null">
+        CUS_NAME,
+      </if>
+      <if test="cusSex != null">
+        CUS_SEX,
+      </if>
+      <if test="cusNation != null">
+        CUS_NATION,
+      </if>
+      <if test="cusBirth != null">
+        CUS_BIRTH,
+      </if>
+      <if test="cusAddress != null">
+        CUS_ADDRESS,
+      </if>
+      <if test="cusIdentity != null">
+        CUS_IDENTITY,
+      </if>
+      <if test="cusVailddate != null">
+        CUS_VAILDDATE,
+      </if>
+      <if test="cusInvailddate != null">
+        CUS_INVAILDDATE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cusName != null">
+        #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        #{cusSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cusNation != null">
+        #{cusNation,jdbcType=VARCHAR},
+      </if>
+      <if test="cusBirth != null">
+        #{cusBirth,jdbcType=DATE},
+      </if>
+      <if test="cusAddress != null">
+        #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdentity != null">
+        #{cusIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusVailddate != null">
+        #{cusVailddate,jdbcType=DATE},
+      </if>
+      <if test="cusInvailddate != null">
+        #{cusInvailddate,jdbcType=DATE},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.UserVisitorInfo">
+    update user_visitor_info
+    <set>
+      <if test="cusName != null">
+        CUS_NAME = #{cusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cusSex != null">
+        CUS_SEX = #{cusSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cusNation != null">
+        CUS_NATION = #{cusNation,jdbcType=VARCHAR},
+      </if>
+      <if test="cusBirth != null">
+        CUS_BIRTH = #{cusBirth,jdbcType=DATE},
+      </if>
+      <if test="cusAddress != null">
+        CUS_ADDRESS = #{cusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cusIdentity != null">
+        CUS_IDENTITY = #{cusIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="cusVailddate != null">
+        CUS_VAILDDATE = #{cusVailddate,jdbcType=DATE},
+      </if>
+      <if test="cusInvailddate != null">
+        CUS_INVAILDDATE = #{cusInvailddate,jdbcType=DATE},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.UserVisitorInfo">
+    update user_visitor_info
+    set CUS_NAME = #{cusName,jdbcType=VARCHAR},
+      CUS_SEX = #{cusSex,jdbcType=VARCHAR},
+      CUS_NATION = #{cusNation,jdbcType=VARCHAR},
+      CUS_BIRTH = #{cusBirth,jdbcType=DATE},
+      CUS_ADDRESS = #{cusAddress,jdbcType=VARCHAR},
+      CUS_IDENTITY = #{cusIdentity,jdbcType=VARCHAR},
+      CUS_VAILDDATE = #{cusVailddate,jdbcType=DATE},
+      CUS_INVAILDDATE = #{cusInvailddate,jdbcType=DATE},
+      STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

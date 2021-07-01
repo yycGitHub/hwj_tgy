@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.DataPublicListMapper">
+  <resultMap id="DataPublicListMap" type="com.hwj.tgy.entity.DataPublicList">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="DATA_NUMBER" jdbcType="VARCHAR" property="dataNumber" />
+    <result column="DATA_NAME" jdbcType="VARCHAR" property="dataName" />
+    <result column="DATA_VALUE" jdbcType="VARCHAR" property="dataValue" />
+    <result column="DATA_DESCRIPTION" jdbcType="VARCHAR" property="dataDescription" />
+    <result column="DATA_TYPE" jdbcType="INTEGER" property="dataType" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="DataPublicList">
+    ID, DATA_NUMBER, DATA_NAME, DATA_VALUE, DATA_DESCRIPTION, DATA_TYPE, STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimary" parameterType="java.lang.String" resultMap="DataPublicListMap">
+    select 
+    <include refid="Base_Column_List" />
+    from data_public_list
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.DataPublicList">
+    insert into data_public_list (ID, DATA_NUMBER, DATA_NAME, 
+      DATA_VALUE, DATA_DESCRIPTION, DATA_TYPE, 
+      STATE, HANDLE_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{dataNumber,jdbcType=VARCHAR}, #{dataName,jdbcType=VARCHAR}, 
+      #{dataValue,jdbcType=VARCHAR}, #{dataDescription,jdbcType=VARCHAR}, #{dataType,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.DataPublicList">
+    insert into data_public_list
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="dataNumber != null">
+        DATA_NUMBER,
+      </if>
+      <if test="dataName != null">
+        DATA_NAME,
+      </if>
+      <if test="dataValue != null">
+        DATA_VALUE,
+      </if>
+      <if test="dataDescription != null">
+        DATA_DESCRIPTION,
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="dataNumber != null">
+        #{dataNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dataName != null">
+        #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataValue != null">
+        #{dataValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDescription != null">
+        #{dataDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.DataPublicList">
+    update data_public_list
+    <set>
+      <if test="dataNumber != null">
+        DATA_NUMBER = #{dataNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="dataName != null">
+        DATA_NAME = #{dataName,jdbcType=VARCHAR},
+      </if>
+      <if test="dataValue != null">
+        DATA_VALUE = #{dataValue,jdbcType=VARCHAR},
+      </if>
+      <if test="dataDescription != null">
+        DATA_DESCRIPTION = #{dataDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null">
+        DATA_TYPE = #{dataType,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.DataPublicList">
+    update data_public_list
+    set DATA_NUMBER = #{dataNumber,jdbcType=VARCHAR},
+      DATA_NAME = #{dataName,jdbcType=VARCHAR},
+      DATA_VALUE = #{dataValue,jdbcType=VARCHAR},
+      DATA_DESCRIPTION = #{dataDescription,jdbcType=VARCHAR},
+      DATA_TYPE = #{dataType,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

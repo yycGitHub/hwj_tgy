@@ -13,4 +13,4 @@ mybatis:
   # mybatis配置实体类的路径
   type-aliases-package: com.hwj.tgy.entity
   # mybatis配置mapper.xml路径
-  #mapper-locations: mappers
+  mapper-locations: classpath*:/mappers/*.xml

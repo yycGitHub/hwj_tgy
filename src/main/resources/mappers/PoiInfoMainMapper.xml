@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hwj.tgy.mapper.wx.WxPoiInfoMainMapper">
+<mapper namespace="com.hwj.tgy.mapper.PoiInfoMainMapper">
   <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.PoiInfoMain">
     <id column="ID" jdbcType="VARCHAR" property="id" />
     <result column="POI_NAME" jdbcType="VARCHAR" property="poiName" />
@@ -23,11 +23,11 @@
     select 
     <include refid="Base_Column_List" />
     from poi_info_main
-    where ID = #{id}
+    where ID = #{id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from poi_info_main
-    where ID = #{id}
+    where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.hwj.tgy.entity.PoiInfoMain">
     insert into poi_info_main (ID, POI_NAME, POI_TYPE, 
@@ -35,10 +35,10 @@
       POI_ROAM, POI_PANORAMA, POI_ICON, 
       POI_PHONE, STATE, HANDLE_TIME
       )
-    values (#{id}, #{poiName}, #{poiType},
-      #{poiIntroduce}, #{poiLon}, #{poiLat},
-      #{poiRoam}, #{poiPanorama}, #{poiIcon},
-      #{poiPhone}, #{state}, #{handleTime}
+    values (#{id,jdbcType=VARCHAR}, #{poiName,jdbcType=VARCHAR}, #{poiType,jdbcType=INTEGER}, 
+      #{poiIntroduce,jdbcType=VARCHAR}, #{poiLon,jdbcType=VARCHAR}, #{poiLat,jdbcType=VARCHAR}, 
+      #{poiRoam,jdbcType=VARCHAR}, #{poiPanorama,jdbcType=VARCHAR}, #{poiIcon,jdbcType=VARCHAR}, 
+      #{poiPhone,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hwj.tgy.entity.PoiInfoMain">
@@ -83,40 +83,40 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id},
+        #{id,jdbcType=VARCHAR},
       </if>
       <if test="poiName != null">
-        #{poiName},
+        #{poiName,jdbcType=VARCHAR},
       </if>
       <if test="poiType != null">
-        #{poiType},
+        #{poiType,jdbcType=INTEGER},
       </if>
       <if test="poiIntroduce != null">
-        #{poiIntroduce},
+        #{poiIntroduce,jdbcType=VARCHAR},
       </if>
       <if test="poiLon != null">
-        #{poiLon},
+        #{poiLon,jdbcType=VARCHAR},
       </if>
       <if test="poiLat != null">
-        #{poiLat},
+        #{poiLat,jdbcType=VARCHAR},
       </if>
       <if test="poiRoam != null">
-        #{poiRoam},
+        #{poiRoam,jdbcType=VARCHAR},
       </if>
       <if test="poiPanorama != null">
-        #{poiPanorama},
+        #{poiPanorama,jdbcType=VARCHAR},
       </if>
       <if test="poiIcon != null">
-        #{poiIcon},
+        #{poiIcon,jdbcType=VARCHAR},
       </if>
       <if test="poiPhone != null">
-        #{poiPhone},
+        #{poiPhone,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
-        #{state},
+        #{state,jdbcType=INTEGER},
       </if>
       <if test="handleTime != null">
-        #{handleTime},
+        #{handleTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -124,54 +124,54 @@
     update poi_info_main
     <set>
       <if test="poiName != null">
-        POI_NAME = #{poiName},
+        POI_NAME = #{poiName,jdbcType=VARCHAR},
       </if>
       <if test="poiType != null">
-        POI_TYPE = #{poiType},
+        POI_TYPE = #{poiType,jdbcType=INTEGER},
       </if>
       <if test="poiIntroduce != null">
-        POI_INTRODUCE = #{poiIntroduce},
+        POI_INTRODUCE = #{poiIntroduce,jdbcType=VARCHAR},
       </if>
       <if test="poiLon != null">
-        POI_LON = #{poiLon},
+        POI_LON = #{poiLon,jdbcType=VARCHAR},
       </if>
       <if test="poiLat != null">
-        POI_LAT = #{poiLat},
+        POI_LAT = #{poiLat,jdbcType=VARCHAR},
       </if>
       <if test="poiRoam != null">
-        POI_ROAM = #{poiRoam},
+        POI_ROAM = #{poiRoam,jdbcType=VARCHAR},
       </if>
       <if test="poiPanorama != null">
-        POI_PANORAMA = #{poiPanorama},
+        POI_PANORAMA = #{poiPanorama,jdbcType=VARCHAR},
       </if>
       <if test="poiIcon != null">
-        POI_ICON = #{poiIcon},
+        POI_ICON = #{poiIcon,jdbcType=VARCHAR},
       </if>
       <if test="poiPhone != null">
-        POI_PHONE = #{poiPhone},
+        POI_PHONE = #{poiPhone,jdbcType=VARCHAR},
       </if>
       <if test="state != null">
-        STATE = #{state},
+        STATE = #{state,jdbcType=INTEGER},
       </if>
       <if test="handleTime != null">
-        HANDLE_TIME = #{handleTime},
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
       </if>
     </set>
-    where ID = #{id}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.PoiInfoMain">
     update poi_info_main
-    set POI_NAME = #{poiName},
-      POI_TYPE = #{poiType},
-      POI_INTRODUCE = #{poiIntroduce},
-      POI_LON = #{poiLon},
-      POI_LAT = #{poiLat},
-      POI_ROAM = #{poiRoam},
-      POI_PANORAMA = #{poiPanorama},
-      POI_ICON = #{poiIcon},
-      POI_PHONE = #{poiPhone},
-      STATE = #{state},
-      HANDLE_TIME = #{handleTime}
-    where ID = #{id}
+    set POI_NAME = #{poiName,jdbcType=VARCHAR},
+      POI_TYPE = #{poiType,jdbcType=INTEGER},
+      POI_INTRODUCE = #{poiIntroduce,jdbcType=VARCHAR},
+      POI_LON = #{poiLon,jdbcType=VARCHAR},
+      POI_LAT = #{poiLat,jdbcType=VARCHAR},
+      POI_ROAM = #{poiRoam,jdbcType=VARCHAR},
+      POI_PANORAMA = #{poiPanorama,jdbcType=VARCHAR},
+      POI_ICON = #{poiIcon,jdbcType=VARCHAR},
+      POI_PHONE = #{poiPhone,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.CameraJuehuataRecordMapper">
+  <resultMap id="CameraJuehuataRecordMap" type="com.hwj.tgy.entity.CameraJuehuataRecord">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="JHT_WXID" jdbcType="VARCHAR" property="jhtWxid" />
+    <result column="JHT_AMOUNT" jdbcType="DOUBLE" property="jhtAmount" />
+    <result column="JHT_CREAMAID" jdbcType="INTEGER" property="jhtCreamaid" />
+    <result column="JHT_CAMERANAME" jdbcType="VARCHAR" property="jhtCameraname" />
+    <result column="JHT_COMPETEID" jdbcType="VARCHAR" property="jhtCompeteid" />
+    <result column="JHT_COMPETESTATE" jdbcType="INTEGER" property="jhtCompetestate" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="CameraJuehuataRecord_Column_List">
+    ID, JHT_WXID, JHT_AMOUNT, JHT_CREAMAID, JHT_CAMERANAME, JHT_COMPETEID, JHT_COMPETESTATE, 
+    STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimary" parameterType="java.lang.String" resultMap="CameraJuehuataRecordMap">
+    select 
+    <include refid="Base_Column_List" />
+    from camera_juehuata_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.CameraJuehuataRecord">
+    insert into camera_juehuata_record (ID, JHT_WXID, JHT_AMOUNT, 
+      JHT_CREAMAID, JHT_CAMERANAME, JHT_COMPETEID, 
+      JHT_COMPETESTATE, STATE, HANDLE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{jhtWxid,jdbcType=VARCHAR}, #{jhtAmount,jdbcType=DOUBLE}, 
+      #{jhtCreamaid,jdbcType=INTEGER}, #{jhtCameraname,jdbcType=VARCHAR}, #{jhtCompeteid,jdbcType=VARCHAR}, 
+      #{jhtCompetestate,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.CameraJuehuataRecord">
+    insert into camera_juehuata_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="jhtWxid != null">
+        JHT_WXID,
+      </if>
+      <if test="jhtAmount != null">
+        JHT_AMOUNT,
+      </if>
+      <if test="jhtCreamaid != null">
+        JHT_CREAMAID,
+      </if>
+      <if test="jhtCameraname != null">
+        JHT_CAMERANAME,
+      </if>
+      <if test="jhtCompeteid != null">
+        JHT_COMPETEID,
+      </if>
+      <if test="jhtCompetestate != null">
+        JHT_COMPETESTATE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtWxid != null">
+        #{jhtWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtAmount != null">
+        #{jhtAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="jhtCreamaid != null">
+        #{jhtCreamaid,jdbcType=INTEGER},
+      </if>
+      <if test="jhtCameraname != null">
+        #{jhtCameraname,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtCompeteid != null">
+        #{jhtCompeteid,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtCompetestate != null">
+        #{jhtCompetestate,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.CameraJuehuataRecord">
+    update camera_juehuata_record
+    <set>
+      <if test="jhtWxid != null">
+        JHT_WXID = #{jhtWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtAmount != null">
+        JHT_AMOUNT = #{jhtAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="jhtCreamaid != null">
+        JHT_CREAMAID = #{jhtCreamaid,jdbcType=INTEGER},
+      </if>
+      <if test="jhtCameraname != null">
+        JHT_CAMERANAME = #{jhtCameraname,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtCompeteid != null">
+        JHT_COMPETEID = #{jhtCompeteid,jdbcType=VARCHAR},
+      </if>
+      <if test="jhtCompetestate != null">
+        JHT_COMPETESTATE = #{jhtCompetestate,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.CameraJuehuataRecord">
+    update camera_juehuata_record
+    set JHT_WXID = #{jhtWxid,jdbcType=VARCHAR},
+      JHT_AMOUNT = #{jhtAmount,jdbcType=DOUBLE},
+      JHT_CREAMAID = #{jhtCreamaid,jdbcType=INTEGER},
+      JHT_CAMERANAME = #{jhtCameraname,jdbcType=VARCHAR},
+      JHT_COMPETEID = #{jhtCompeteid,jdbcType=VARCHAR},
+      JHT_COMPETESTATE = #{jhtCompetestate,jdbcType=INTEGER},
+      STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

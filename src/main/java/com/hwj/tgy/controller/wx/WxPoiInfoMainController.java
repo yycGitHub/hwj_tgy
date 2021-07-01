@@ -4,7 +4,9 @@ import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.entity.common.ResultMessage;
 import com.hwj.tgy.service.wx.WxPoiInfoMainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -14,7 +16,7 @@ public class WxPoiInfoMainController {
     private WxPoiInfoMainService wxPoiInfoMainService;
 
     @RequestMapping("/insertSelective")
-    public ResultMessage insertSelective( PoiInfoMain poiInfoMain) {
+    public ResultMessage insertSelective(@RequestBody PoiInfoMain poiInfoMain) {
         System.out.println("aaaaaaaaaaaaaaaaaaaa");
         return wxPoiInfoMainService.insertSelective(poiInfoMain);
     }

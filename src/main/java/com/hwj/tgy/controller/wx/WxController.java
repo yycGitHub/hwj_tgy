@@ -15,6 +15,12 @@ public class WxController {
     @Autowired
     private WxService wxService;
 
+    /**
+     * 验证消息的确来自微信服务器
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping("/checkSignature")
     public ResultMessage checkSignature(HttpServletRequest request, HttpServletResponse response){
         String signature = request.getParameter("signature");

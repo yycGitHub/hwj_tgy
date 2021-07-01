@@ -2,17 +2,18 @@ package com.hwj.tgy.mapper.wx;
 
 import com.hwj.tgy.entity.PoiInfoMain;
 import com.hwj.tgy.mapper.common.MysqlBaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WxPoiInfoMainMapper extends MysqlBaseMapper<PoiInfoMain> {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimary(String id);
 
     int insert(PoiInfoMain poiInfoMain);
 
     int insertSelective(PoiInfoMain poiInfoMain);
 
-    PoiInfoMain selectByPrimaryKey(String id);
+    PoiInfoMain selectByPrimary(String id);
 
     int updateByPrimaryKeySelective(PoiInfoMain poiInfoMain);
 

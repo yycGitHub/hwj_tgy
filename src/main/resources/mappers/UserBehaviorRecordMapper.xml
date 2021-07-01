@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.UserBehaviorRecordMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.UserBehaviorRecord">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BHA_WXID" jdbcType="VARCHAR" property="bhaWxid" />
+    <result column="BHA_TYPE" jdbcType="INTEGER" property="bhaType" />
+    <result column="BHA_REMARK" jdbcType="VARCHAR" property="bhaRemark" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="HANDLE_TIME" jdbcType="DATE" property="handleTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BHA_WXID, BHA_TYPE, BHA_REMARK, STATE, HANDLE_TIME
+  </sql>
+  <select id="selectByPrimary" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_behavior_record
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.UserBehaviorRecord">
+    insert into user_behavior_record (ID, BHA_WXID, BHA_TYPE, 
+      BHA_REMARK, STATE, HANDLE_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{bhaWxid,jdbcType=VARCHAR}, #{bhaType,jdbcType=INTEGER}, 
+      #{bhaRemark,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{handleTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.UserBehaviorRecord">
+    insert into user_behavior_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="bhaWxid != null">
+        BHA_WXID,
+      </if>
+      <if test="bhaType != null">
+        BHA_TYPE,
+      </if>
+      <if test="bhaRemark != null">
+        BHA_REMARK,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bhaWxid != null">
+        #{bhaWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="bhaType != null">
+        #{bhaType,jdbcType=INTEGER},
+      </if>
+      <if test="bhaRemark != null">
+        #{bhaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.UserBehaviorRecord">
+    update user_behavior_record
+    <set>
+      <if test="bhaWxid != null">
+        BHA_WXID = #{bhaWxid,jdbcType=VARCHAR},
+      </if>
+      <if test="bhaType != null">
+        BHA_TYPE = #{bhaType,jdbcType=INTEGER},
+      </if>
+      <if test="bhaRemark != null">
+        BHA_REMARK = #{bhaRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=DATE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.UserBehaviorRecord">
+    update user_behavior_record
+    set BHA_WXID = #{bhaWxid,jdbcType=VARCHAR},
+      BHA_TYPE = #{bhaType,jdbcType=INTEGER},
+      BHA_REMARK = #{bhaRemark,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      HANDLE_TIME = #{handleTime,jdbcType=DATE}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
