@@ -1,5 +1,9 @@
 package com.hwj.tgy.service.wx.impl;
 
+import com.alibaba.fastjson.JSONObject;
+import com.hwj.tgy.common.utils.PropertiesUtils;
+import com.hwj.tgy.common.utils.httpClient.HttpClientUtils;
+import com.hwj.tgy.entity.common.ResultMessage;
 import com.hwj.tgy.service.wx.WxService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -20,7 +24,7 @@ public class WxServiceImpl implements WxService {
         // 1.将token、timestamp、nonce三个参数进行字典序排序
         Boolean bool = true;
         try {
-            Properties properties = PropertiesLoaderUtils.loadAllProperties("resource.properties");
+            Properties properties = PropertiesLoaderUtils.loadAllProperties("tgy.properties");
             String[] arr = new String[] { properties.getProperty("wx.token"), timestamp, nonce };
             Arrays.sort(arr);
 
@@ -67,5 +71,18 @@ public class WxServiceImpl implements WxService {
         }
         return strDigest.toString();
     }
+
+    @Override
+    public ResultMessage signInMiniproject(String code) {
+        Properties properties = PropertiesUtils.getTgyProperties();
+        String code2SessionUrl = "https://api.weixin.qq.com/sns/jscode2session?appid="+properties.getProperty("wx.appid")
+                +"&secret="+properties.getProperty("wx.appsecret")+"&js_code="+code+"&grant_type="+properties.getProperty("wx.grant_type");
+        String result = HttpClientUtils.sendGet(code2SessionUrl,true,true);
+        JSONObject jsonObj = JSONObject.parseObject(result);
+
+        return ResultMessage.getResultMessageSuccess(result);
+    }
+
+
 
 }

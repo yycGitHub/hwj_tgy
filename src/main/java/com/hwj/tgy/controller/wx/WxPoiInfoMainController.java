@@ -15,8 +15,24 @@ public class WxPoiInfoMainController {
     @Autowired
     private WxPoiInfoMainService wxPoiInfoMainService;
 
+    /**
+     * 新增POI
+     * @param poiInfoMain
+     * @return
+     */
     @RequestMapping("/insertSelective")
     public ResultMessage insertSelective(@RequestBody PoiInfoMain poiInfoMain) {
+        System.out.println("aaaaaaaaaaaaaaaaaaaa");
+        return wxPoiInfoMainService.insertSelective(poiInfoMain);
+    }
+
+    /**
+     * 导航
+     * @param poiInfoMain
+     * @return
+     */
+    @RequestMapping("/navigation")
+    public ResultMessage navigation(@RequestBody PoiInfoMain poiInfoMain) {
         System.out.println("aaaaaaaaaaaaaaaaaaaa");
         return wxPoiInfoMainService.insertSelective(poiInfoMain);
     }

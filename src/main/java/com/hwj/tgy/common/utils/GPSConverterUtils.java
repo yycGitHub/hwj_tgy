@@ -1,4 +1,4 @@
-package com.hwj.tgy.common;
+package com.hwj.tgy.common.utils;
 
 import com.hwj.tgy.entity.common.Gps;
 
@@ -13,7 +13,7 @@ public class GPSConverterUtils {
      * @param lat
      * @param lon
      */
-    public static Gps gps84_To_Gcj02(double lat, double lon) {
+    public Gps getgps84_To_Gcj02(double lat, double lon) {
         if (outOfChina(lat, lon))
         {
             return null;
