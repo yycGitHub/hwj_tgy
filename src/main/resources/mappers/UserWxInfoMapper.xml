@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.tgy.mapper.UserWxInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.UserWxInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="UNIONID" jdbcType="INTEGER" property="unionid" />
+    <result column="SESSIONKEY" jdbcType="VARCHAR" property="sessionkey" />
+    <result column="NICKNAME" jdbcType="INTEGER" property="nickname" />
+    <result column="AVATARURL" jdbcType="DATE" property="avatarurl" />
+    <result column="GENDER" jdbcType="CHAR" property="gender" />
+    <result column="COUNTRY" jdbcType="CHAR" property="country" />
+    <result column="PROVINCE" jdbcType="CHAR" property="province" />
+    <result column="CITY" jdbcType="CHAR" property="city" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, OPENID, UNIONID, SESSIONKEY, NICKNAME, AVATARURL, GENDER, COUNTRY, PROVINCE, 
+    CITY
+  </sql>
+  <select id="selectByPrimary" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_wx_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimary" parameterType="java.lang.String">
+    delete from user_wx_info
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hwj.tgy.entity.UserWxInfo">
+    insert into user_wx_info (ID, OPENID, UNIONID, 
+      SESSIONKEY, NICKNAME, AVATARURL, 
+      GENDER, COUNTRY, PROVINCE, CITY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=INTEGER}, 
+      #{sessionkey,jdbcType=VARCHAR}, #{nickname,jdbcType=INTEGER}, #{avatarurl,jdbcType=DATE}, 
+      #{gender,jdbcType=CHAR}, #{country,jdbcType=CHAR}, #{province,jdbcType=CHAR}, #{city,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.tgy.entity.UserWxInfo">
+    insert into user_wx_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="openid != null">
+        OPENID,
+      </if>
+      <if test="unionid != null">
+        UNIONID,
+      </if>
+      <if test="sessionkey != null">
+        SESSIONKEY,
+      </if>
+      <if test="nickname != null">
+        NICKNAME,
+      </if>
+      <if test="avatarurl != null">
+        AVATARURL,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="country != null">
+        COUNTRY,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        #{unionid,jdbcType=INTEGER},
+      </if>
+      <if test="sessionkey != null">
+        #{sessionkey,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=INTEGER},
+      </if>
+      <if test="avatarurl != null">
+        #{avatarurl,jdbcType=DATE},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.tgy.entity.UserWxInfo">
+    update user_wx_info
+    <set>
+      <if test="openid != null">
+        OPENID = #{openid,jdbcType=VARCHAR},
+      </if>
+      <if test="unionid != null">
+        UNIONID = #{unionid,jdbcType=INTEGER},
+      </if>
+      <if test="sessionkey != null">
+        SESSIONKEY = #{sessionkey,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        NICKNAME = #{nickname,jdbcType=INTEGER},
+      </if>
+      <if test="avatarurl != null">
+        AVATARURL = #{avatarurl,jdbcType=DATE},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="country != null">
+        COUNTRY = #{country,jdbcType=CHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=CHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.UserWxInfo">
+    update user_wx_info
+    set OPENID = #{openid,jdbcType=VARCHAR},
+      UNIONID = #{unionid,jdbcType=INTEGER},
+      SESSIONKEY = #{sessionkey,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=INTEGER},
+      AVATARURL = #{avatarurl,jdbcType=DATE},
+      GENDER = #{gender,jdbcType=CHAR},
+      COUNTRY = #{country,jdbcType=CHAR},
+      PROVINCE = #{province,jdbcType=CHAR},
+      CITY = #{city,jdbcType=CHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
