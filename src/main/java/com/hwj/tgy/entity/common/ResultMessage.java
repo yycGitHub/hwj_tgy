@@ -36,10 +36,10 @@ public class ResultMessage {
         return rm;
     }
 
-    public static ResultMessage getResultMessageFail(String jsonStr){
+    public static ResultMessage getResultMessageFail(String jsonStr,String message){
         ResultMessage rm = new ResultMessage();
         rm.setCode("500");
-        rm.setMessage("fail");
+        rm.setMessage(message);
         rm.setResult(jsonStr);
         return rm;
     }

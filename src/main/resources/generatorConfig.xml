@@ -32,7 +32,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- 相关表的配置 -->
-        <!--  <table tableName="POI_INFO_MAIN" domainObjectName="PoiInfoMain" enableCountByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/> -->
+         <table tableName="user_wx_info" domainObjectName="UserWxInfo" enableCountByExample="false"  enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
 
      </context>
  </generatorConfiguration>

@@ -1,6 +1,8 @@
 package com.hwj;
 
-import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+import tk.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,4 +18,15 @@ public class App
     {
         SpringApplication.run(App.class, args);
     }
+
+    /**
+     * 创建webSocket配置对象
+     * @return
+     */
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
 }
+
+

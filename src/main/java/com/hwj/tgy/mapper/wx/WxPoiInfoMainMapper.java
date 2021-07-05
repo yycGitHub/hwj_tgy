@@ -1,8 +1,7 @@
 package com.hwj.tgy.mapper.wx;
 
 import com.hwj.tgy.entity.PoiInfoMain;
-import com.hwj.tgy.mapper.common.MysqlBaseMapper;
-import org.apache.ibatis.annotations.Mapper;
+import com.hwj.tgy.common.MysqlBaseMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository

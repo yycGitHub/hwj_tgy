@@ -1,4 +1,4 @@
-package com.hwj.tgy.mapper.common;
+package com.hwj.tgy.common;
 
 
 import tk.mybatis.mapper.common.IdsMapper;

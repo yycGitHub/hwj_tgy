@@ -31,7 +31,7 @@ public class WebSocketServer {
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(Session session,@PathParam("wxid")String  wxid) {
+    public void onOpen(Session session) {
         //wxidSet.add(wxid);
         SessionSet.add(session);
         int cnt = OnlineCount.incrementAndGet(); // 在线数加1

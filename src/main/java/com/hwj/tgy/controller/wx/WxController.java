@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.mapper.entity.Example;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Properties;
 
 @RestController
@@ -60,8 +62,22 @@ public class WxController {
      * @return
      */
     @RequestMapping("/saveWxUserWxInfo")
-    public ResultMessage saveWxUserWxInfo(HttpServletRequest request, HttpServletResponse response,@RequestBody UserWxInfo userWxInfo){
-        System.out.println(request.getParameter("userWxInfo"));
-        return wxUserWxInfoService.insertUserWxInfo(userWxInfo);
+    public ResultMessage saveWxUserWxInfo(@RequestBody UserWxInfo userWxInfo){
+        //判断该用户是否已存在
+        UserWxInfo selectUserWxInfo = new UserWxInfo();
+        selectUserWxInfo.setOpenid(userWxInfo.getOpenid());
+        Example example = new Example(UserWxInfo.class);
+        List<UserWxInfo> userWxInfoList = wxUserWxInfoService.selectUserWxInfoList(example);
+        if (userWxInfoList.size()==1) {
+            //更新
+            userWxInfo.setId(userWxInfoList.get(0).getId());
+            return wxUserWxInfoService.updateUserWxInfo(userWxInfo);
+        } else {
+            //新增
+            return wxUserWxInfoService.insertUserWxInfo(userWxInfo);
+        }
+
     }
+
+
 }

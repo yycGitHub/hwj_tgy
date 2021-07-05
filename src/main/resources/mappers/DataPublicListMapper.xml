@@ -16,7 +16,7 @@
   </sql>
   <select id="selectByPrimary" parameterType="java.lang.String" resultMap="DataPublicListMap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="DataPublicList" />
     from data_public_list
     where ID = #{id,jdbcType=VARCHAR}
   </select>

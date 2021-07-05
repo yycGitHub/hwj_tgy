@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hwj.tgy.mapper.UserWxInfoMapper">
   <resultMap id="BaseResultMap" type="com.hwj.tgy.entity.UserWxInfo">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="OPENID" jdbcType="VARCHAR" property="openid" />
-    <result column="UNIONID" jdbcType="INTEGER" property="unionid" />
+    <result column="UNIONID" jdbcType="VARCHAR" property="unionid" />
     <result column="SESSIONKEY" jdbcType="VARCHAR" property="sessionkey" />
-    <result column="NICKNAME" jdbcType="INTEGER" property="nickname" />
-    <result column="AVATARURL" jdbcType="DATE" property="avatarurl" />
-    <result column="GENDER" jdbcType="CHAR" property="gender" />
-    <result column="COUNTRY" jdbcType="CHAR" property="country" />
-    <result column="PROVINCE" jdbcType="CHAR" property="province" />
-    <result column="CITY" jdbcType="CHAR" property="city" />
+    <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+    <result column="AVATARURL" jdbcType="VARCHAR" property="avatarurl" />
+    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    <result column="COUNTRY" jdbcType="VARCHAR" property="country" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
   </resultMap>
   <sql id="Base_Column_List">
     ID, OPENID, UNIONID, SESSIONKEY, NICKNAME, AVATARURL, GENDER, COUNTRY, PROVINCE, 
@@ -32,9 +32,9 @@
       SESSIONKEY, NICKNAME, AVATARURL, 
       GENDER, COUNTRY, PROVINCE, CITY
       )
-    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=INTEGER}, 
-      #{sessionkey,jdbcType=VARCHAR}, #{nickname,jdbcType=INTEGER}, #{avatarurl,jdbcType=DATE}, 
-      #{gender,jdbcType=CHAR}, #{country,jdbcType=CHAR}, #{province,jdbcType=CHAR}, #{city,jdbcType=CHAR}
+    values (#{id,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}, #{unionid,jdbcType=VARCHAR},
+      #{sessionkey,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR},
+      #{gender,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.hwj.tgy.entity.UserWxInfo">

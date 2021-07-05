@@ -18,7 +18,7 @@
   </sql>
   <select id="selectByPrimary" parameterType="java.lang.String" resultMap="CameraJuehuataRecordMap">
     select 
-    <include refid="Base_Column_List" />
+    <include refid="CameraJuehuataRecord_Column_List" />
     from camera_juehuata_record
     where ID = #{id,jdbcType=VARCHAR}
   </select>
