@@ -6,11 +6,11 @@ import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
-public interface WxUserWxInfoService {
+public interface UserWxInfoService {
 
     ResultMessage insertUserWxInfo(UserWxInfo poiInfoMain);
 
-    List<UserWxInfo> selectUserWxInfoList(Example poiInfoMain);
-
     ResultMessage updateUserWxInfo(UserWxInfo poiInfoMain);
+
+    List<UserWxInfo> selectByExample(UserWxInfo userWxInfo);
 }

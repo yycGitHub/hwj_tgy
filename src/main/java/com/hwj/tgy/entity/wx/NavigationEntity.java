@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class NavigationEntity {
     //微信ID
-    private String wxid;
+    private String openId;
     //起始纬度
     private double fromLatitude;
     //起始经度
@@ -29,4 +29,8 @@ public class NavigationEntity {
     private String mode;
     //签名
     private String sig;
+    //小程序导航类型
+    private String navigationType;
+    //是否需要大地转火星坐标系
+    private boolean changeCoordinate;
 }

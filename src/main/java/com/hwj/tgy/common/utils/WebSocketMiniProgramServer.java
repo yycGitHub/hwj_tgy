@@ -1,6 +1,5 @@
 package com.hwj.tgy.common.utils;
 
-import com.hwj.tgy.entity.common.WebSocketWx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -10,32 +9,30 @@ import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@ServerEndpoint(value = "/ws/websocket/tgy")
+@ServerEndpoint(value = "/ws/websocket/tgy/{openid}")
 @Component
-public class WebSocketServer {
+public class WebSocketMiniProgramServer {
 
     @PostConstruct
     public void init() {
         System.out.println("websocket 加载");
     }
 
-    private static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
+    private static Logger log = LoggerFactory.getLogger(WebSocketMiniProgramServer.class);
     private static final AtomicInteger OnlineCount = new AtomicInteger(0);
-    // concurrent包的线程安全Set，用来存放每个客户端对应的Session对象。
-    private static CopyOnWriteArraySet<Session> SessionSet = new CopyOnWriteArraySet<Session>();
-    //private static CopyOnWriteArraySet<String> wxidSet = new CopyOnWriteArraySet<String>();
+    private static Map<String,Session> concurrentHashMap=new ConcurrentHashMap<String,Session>();
     /**
      * 连接建立成功调用的方法
      */
     @OnOpen
-    public void onOpen(Session session) {
-        //wxidSet.add(wxid);
-        SessionSet.add(session);
+    public void onOpen(Session session,@PathParam(value="openid") String openId) {
+        concurrentHashMap.put(openId,session);
         int cnt = OnlineCount.incrementAndGet(); // 在线数加1
-        log.info("有连接加入，当前连接数为：{}", cnt);
+        log.info("有连接加入，当前连接数为：{} openId:"+openId, cnt);
         SendMessage(session, "连接成功");
     }
 
@@ -43,9 +40,8 @@ public class WebSocketServer {
      * 连接关闭调用的方法
      */
     @OnClose
-    public void onClose(Session session,@PathParam("wxid")String  wxid) {
-        SessionSet.remove(session);
-        //wxidSet.remove(wxid);
+    public void onClose(Session session,@PathParam("openid")String openId) {
+        concurrentHashMap.remove(openId);
         int cnt = OnlineCount.decrementAndGet();
         log.info("有连接关闭，当前连接数为：{}", cnt);
     }
@@ -95,7 +91,8 @@ public class WebSocketServer {
      * @throws IOException
      */
     public static void BroadCastInfo(String message) throws IOException {
-        for (Session session : SessionSet) {
+        for (String openId : concurrentHashMap.keySet()) {
+            Session session = concurrentHashMap.get(openId);
             if(session.isOpen()){
                 SendMessage(session, message);
             }
@@ -104,15 +101,15 @@ public class WebSocketServer {
 
     /**
      * 指定Session发送消息
-     * @param sessionId
+     * @param openId
      * @param message
      * @throws IOException
      */
-    public static void SendMessage(String message,String sessionId) throws IOException {
+    public static void SendMessage(String message,String openId) throws IOException {
         Session session = null;
-        for (Session s : SessionSet) {
-            if(s.getId().equals(sessionId)){
-                session = s;
+        for (String openIdLocal : concurrentHashMap.keySet()) {
+            if(openId.equals(openIdLocal)){
+                session = concurrentHashMap.get(openId);
                 break;
             }
         }
@@ -120,7 +117,7 @@ public class WebSocketServer {
             SendMessage(session, message);
         }
         else{
-            log.warn("没有找到你指定ID的会话：{}",sessionId);
+            log.warn("没有找到你指定ID的会话：{}",openId);
         }
     }
 }

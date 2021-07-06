@@ -3,7 +3,7 @@ package com.hwj.tgy.service.wx.impl;
 import com.hwj.tgy.entity.UserWxInfo;
 import com.hwj.tgy.entity.common.ResultMessage;
 import com.hwj.tgy.mapper.UserWxInfoMapper;
-import com.hwj.tgy.service.wx.WxUserWxInfoService;
+import com.hwj.tgy.service.wx.UserWxInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -11,7 +11,7 @@ import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 
 @Service
-public class WxUserWxInfoServiceImpl implements WxUserWxInfoService {
+public class UserWxInfoServiceImpl implements UserWxInfoService {
     @Autowired
     private UserWxInfoMapper userWxInfoMapper;
 
@@ -30,14 +30,16 @@ public class WxUserWxInfoServiceImpl implements WxUserWxInfoService {
     }
 
     @Override
-    public List<UserWxInfo> selectUserWxInfoList(Example poiInfoMain) {
-        return userWxInfoMapper.selectByExample(poiInfoMain);
+    public ResultMessage updateUserWxInfo(UserWxInfo userWxInfo) {
+        userWxInfoMapper.updateByPrimaryKey(userWxInfo);
+        return ResultMessage.getResultMessageSuccess();
     }
 
     @Override
-    public ResultMessage updateUserWxInfo(UserWxInfo poiInfoMain) {
-        userWxInfoMapper.updateByPrimaryKey(poiInfoMain);
-        return ResultMessage.getResultMessageSuccess();
+    public List<UserWxInfo> selectByExample(UserWxInfo userWxInfo) {
+        Example example = new Example(UserWxInfo.class);
+        example.createCriteria().andEqualTo("openid",userWxInfo.getOpenid());
+        return userWxInfoMapper.selectByExample(example);
     }
 
 

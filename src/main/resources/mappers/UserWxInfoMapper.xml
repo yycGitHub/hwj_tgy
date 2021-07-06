@@ -139,15 +139,15 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hwj.tgy.entity.UserWxInfo">
     update user_wx_info
-    set OPENID = #{openid,jdbcType=VARCHAR},
-      UNIONID = #{unionid,jdbcType=INTEGER},
-      SESSIONKEY = #{sessionkey,jdbcType=VARCHAR},
-      NICKNAME = #{nickname,jdbcType=INTEGER},
-      AVATARURL = #{avatarurl,jdbcType=DATE},
-      GENDER = #{gender,jdbcType=CHAR},
-      COUNTRY = #{country,jdbcType=CHAR},
-      PROVINCE = #{province,jdbcType=CHAR},
-      CITY = #{city,jdbcType=CHAR}
-    where ID = #{id,jdbcType=VARCHAR}
+    set OPENID = #{openid},
+      UNIONID = #{unionid},
+      SESSIONKEY = #{sessionkey},
+      NICKNAME = #{nickname},
+      AVATARURL = #{avatarurl},
+      GENDER = #{gender},
+      COUNTRY = #{country},
+      PROVINCE = #{province},
+      CITY = #{city}
+    where ID = #{id}
   </update>
 </mapper>

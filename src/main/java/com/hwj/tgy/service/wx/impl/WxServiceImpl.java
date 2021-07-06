@@ -79,7 +79,6 @@ public class WxServiceImpl implements WxService {
                 +"&secret="+properties.getProperty("wx.appsecret")+"&js_code="+code+"&grant_type="+properties.getProperty("wx.grant_type");
         String result = HttpClientUtils.sendGet(code2SessionUrl,true,true);
         JSONObject jsonObj = JSONObject.parseObject(result);
-
         return ResultMessage.getResultMessageSuccess(result);
     }
 
